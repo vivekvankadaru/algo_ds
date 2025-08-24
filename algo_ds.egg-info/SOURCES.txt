@@ -11,4 +11,8 @@ dsa/datastructures/hash_table.py
 dsa/datastructures/single_linked_list.py
 dsa/unittests/__init__.py
 dsa/unittests/datastructures/__init__.py
-dsa/unittests/datastructures/single_linked_list.py
+dsa/unittests/datastructures/test_single_linked_list.py
+problemsolving/__init__.py
+problemsolving/unittests/__init__.py
+problemsolving/unittests/codewars/__init__.py
+problemsolving/unittests/codewars/test_first_non_repeating_letter.py
