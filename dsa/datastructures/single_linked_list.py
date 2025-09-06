@@ -1,11 +1,11 @@
 class Node:
     def __init__(self, ele):
-        self.head = ele
+        self.data = ele
         self.next = None
 
     
     def __repr__(self):
-        return f'{self.head} -> {self.next}'
+        return f'{self.data} -> {self.next}'
     
 class SingleLinkedlist:
     def __init__(self):
@@ -35,7 +35,7 @@ class SingleLinkedlist:
         if self.head is None:
             print('Empty Linked list.')
             return
-        while curr and curr.head!=prev:
+        while curr and curr.data!=prev:
             curr=curr.next
         if curr is None:
             print(f'No {prev} found')
@@ -74,33 +74,28 @@ class SingleLinkedlist:
         curr=self.head
         self.head=curr.next
     def deleteNodeValue(self, ele):
-        '''delete the first occurence of the key'''
-        curr=self.head
-        if self.head is None:
-            print('No elements to delete')
-            return
-        prev=self.head
-        if self.head==ele and curr.next is None:
-            self.deleteAtBeginning()
-            return self.head
-        l=[]
+        '''delete all occurrences of the key'''
+        curr = self.head
+        prev = None
+        found = False
+
+        # Remove matching head nodes
+        while curr and curr.data == ele:
+            self.head = curr.next
+            curr = self.head
+            found = True
+
+        # Traverse and remove matching nodes
         while curr:
-            print(f'curr.head: {curr.head}')
-            print(f'prev:{prev}')
-            print(f'curr:{curr}')
-            if curr.head==ele:
-                temp=curr.next
-                prev.next=temp
-                print(f'new prev: {prev}')
-                l.append(curr.head)
+            if curr.data == ele:
+                prev.next = curr.next
+                curr = curr.next
+                found = True
             else:
-                prev=curr
-                print(f'new prev: {prev}')
-            print(f'sl: {self}')
-            #prev=curr
-            curr=curr.next
-        print(l)
-        if not l:
+                prev = curr
+                curr = curr.next
+
+        if not found:
             print(f'No {ele} to delete')
     
     def deleteNodeAtIndex(self, i):
@@ -110,7 +105,7 @@ class SingleLinkedlist:
         
         if current.next is None and i==0:
             self.head = None
-            return current.head
+            return current.data
         if i > len(self)-1:
             return 'Index value is higher than length'
         prev=current
@@ -120,9 +115,9 @@ class SingleLinkedlist:
                 return self.deleteAtBeginning()
             else:
                 if index==i:
-                    t=current.head
-                    print(prev.head)
-                    print(current.head)
+                    t=current.data
+                    print(prev.data)
+                    print(current.data)
                     print(current.next)
                     prev.next=current.next
                     
@@ -132,15 +127,15 @@ class SingleLinkedlist:
             current=current.next
     def search(self, ele):
         if self.head is None:
-            print('Empty sl')
+            return 'Empty sl'
         curr=self.head
         while curr:
-            if curr.head==ele:
-                print(f'{ele} found')
-                return
+            if curr.data==ele:
+                return f'{ele} found'
+                
             curr=curr.next
         if curr is None:
-            print(f'No {ele} found')
+            return f'No {ele} found'
     
     
     def __repr__(self):
@@ -151,7 +146,7 @@ class SingleLinkedlist:
         curr = self.head
         
         while curr:
-            l.append(curr.head)
+            l.append(curr.data)
             
             curr=curr.next
             
@@ -166,35 +161,56 @@ class SingleLinkedlist:
             count+=1
         return count
     
+    def __eq__(self, other):
+        if not isinstance(other, SingleLinkedlist):
+            return False
+        curr1 = self.head
+        curr2 = other.head
+        while curr1 and curr2:
+            if curr1.data != curr2.data:
+                return False
+            curr1 = curr1.next
+            curr2 = curr2.next
+        return curr1 is None and curr2 is None
     
+def main():
 
-l=SingleLinkedlist()
-l.append(2)
-l.append(1)
-l.append(3)
-l.InsertAtBeginning(4)
-l.insertAfter(5,3)
-l.insertAfter(7,9)
-l.deleteAtBeginning()
-l.deleteNodeValue(3)
-l.deleteNodeValue(5)
-l.deleteNodeValue(10)
-l.insertAfter(2,7)
-l.search(2)
-l.search(10)
-l.append(0)
-l.append(5)
+    l=SingleLinkedlist()
+    l.append(2)
+    l.append(1)
+    l.append(3)
+    l.InsertAtBeginning(4)
+    l.insertAfter(5,3)
+    l.insertAfter(7,9)
+    l.deleteAtBeginning()
+    l.deleteNodeValue(3)
+    l.deleteNodeValue(5)
+    l.deleteNodeValue(10)
+    l.insertAfter(2,7)
+    l.search(2)
+    l.search(10)
+    l.append(0)
+    l.append(5)
 
-print(len(l))
-#print(l._bubble_sort())
+    print(len(l))
+    #print(l._bubble_sort())
 
-l.deleteNodeAtIndex(3)
-l.deleteNodeAtIndex(3)
+    l.deleteNodeAtIndex(3)
+    l.deleteNodeAtIndex(3)
 
-l.InsertAtIndex(2,10)
-l.InsertAtIndex(4,10)
-l.append(10)
-l.append(10)
-print(l)
-l.deleteNodeValue(10)
-print(l)
+    l.InsertAtIndex(2,10)
+    l.InsertAtIndex(4,10)
+    l.append(10)
+    l.append(10)
+    print(l)
+    l.deleteNodeValue(10)
+    print(l)
+
+    sl1=SingleLinkedlist()
+    sl1.append(1)
+    sl1.append(2)
+    sl1.append(1)
+    sl1.deleteNodeValue(1)
+    print(sl1)
+if __name__ == '__main__':
+    main()

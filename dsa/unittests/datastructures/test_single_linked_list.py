@@ -6,6 +6,7 @@ from dsa.datastructures.single_linked_list import SingleLinkedlist, Node
 class TestLinkedList(unittest.TestCase):
     def setUp(self):
         self.ll = SingleLinkedlist()
+        self.l2 = SingleLinkedlist()
 
     def test_append_and_repr(self):
         self.ll.append(1)
@@ -73,12 +74,10 @@ class TestLinkedList(unittest.TestCase):
         self.ll.append(1)
         self.ll.append(2)
         self.ll.append(3)
-        with self.assertLogs() as log:
-            self.ll.search(2)
-        self.assertIn('2 found', log.output[0])
-        with self.assertLogs() as log:
-            self.ll.search(99)
-        self.assertIn('No 99 found', log.output[0])
+        found_status = self.ll.search(2)
+        self.assertEqual('2 found', found_status)
+        found_status = self.ll.search(99)
+        self.assertEqual('No 99 found', found_status)
 
     def test_len(self):
         self.assertEqual(len(self.ll), 0)
@@ -88,6 +87,17 @@ class TestLinkedList(unittest.TestCase):
 
     def test_repr_empty(self):
         self.assertEqual(str(self.ll), "None -> None Empty linked list")
+
+    def test_equal(self):
+        self.ll.append(1)
+        self.ll.append(2)
+        self.ll.append(3)
+
+        self.l2.append(1)
+        self.l2.append(2)
+        self.l2.append(3)
+
+        self.assertEqual(self.ll, self.l2)
 
 if __name__ == '__main__':
     unittest.main()
