@@ -1,4 +1,4 @@
-from problemsolving.gfg import identical_linked_list
+from problemsolving.gfg.linkedlists import identical_linked_list
 from dsa.datastructures.single_linked_list import SingleLinkedlist
 import unittest
 

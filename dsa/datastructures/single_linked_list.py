@@ -138,6 +138,21 @@ class SingleLinkedlist:
             return f'No {ele} found'
     
     
+    def fetchElementFromIndex(self, index):
+        len_sl = len(self)
+        if index > len_sl or index < 0 :
+            return f"Can't fetch {index}>{len_sl}"
+        
+        placeholder=1
+        curr=self.head
+
+        while curr:
+            if placeholder == index:
+                return curr.data
+
+            placeholder+=1
+            curr = curr.next
+
     def __repr__(self):
         
         if self.head is None:

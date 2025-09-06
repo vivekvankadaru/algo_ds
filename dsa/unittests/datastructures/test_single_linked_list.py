@@ -99,5 +99,13 @@ class TestLinkedList(unittest.TestCase):
 
         self.assertEqual(self.ll, self.l2)
 
+    def test_fetchElementFromIndex(self):
+        l=[1,2,3,4,5]
+        for ele in l:
+            self.ll.append(ele)
+        
+        self.assertEqual(3, self.ll.fetchElementFromIndex(3))
+        self.assertEqual("Can't fetch 9>5", self.ll.fetchElementFromIndex(9)
+                         )
 if __name__ == '__main__':
     unittest.main()
