@@ -10,7 +10,8 @@ Explanation : Node 5 moved to front.
 
 from dsa.datastructures.single_linked_list import SingleLinkedlist
 from problemsolving.gfg.linkedlists.utilities import util
-
+import sys
+print(sys.path)
 def move_last_ele_to_first(sl):
     curr=sl.head
     prev=sl.head

@@ -6,7 +6,7 @@ class TestUniqueInOrder(unittest.TestCase):
         self.s='AAAABBBCCDAABBB'
 
     def test_convert_str_to_arr_repeating(self):
-        arr=['AAAA','BBB','CC','D','AA','BBB']
+        arr=['A','B','C','D','A','B']
         self.assertEqual(arr, UniqueInOrder.convert_str_to_arr_repeating(self.s))
 
 
