@@ -8,23 +8,33 @@ Output: 5->1->2->3->4
 Explanation : Node 5 moved to front.
 '''
 
-from dsa.datastructures.single_linked_list import SingleLinkedlist
+from dsa.datastructures.single_linked_list import SingleLinkedlist, Node
 from problemsolving.gfg.linkedlists.utilities import util
 import sys
 print(sys.path)
 def move_last_ele_to_first(sl):
     curr=sl.head
+    if not curr: return 'Empty'
+    if curr.next is None: return 'Single Element'
     prev=sl.head
     while curr:
         if curr.next is None:
-            pass
+            ele = curr.data
+            prev.next = None
+            temp = sl.head
+            new_l=Node(ele)
+            new_l.next = temp
         prev=curr
         curr=curr.next
+    return new_l
 def main():
     str_sl=input('enter the ele of linked list sep by ,:')
-    sl=util.generate_linkedlist_from_list(str_sl.split(','))
+    if not str_sl: 
+        print('Empty elements given')
+    else:
+        sl=util.generate_linkedlist_from_list(str_sl.split(','))
 
-    sl = move_last_ele_to_first(sl)
-    print(sl)
+        sl = move_last_ele_to_first(sl)
+        print(sl)
 if __name__=='__main__':
     main()

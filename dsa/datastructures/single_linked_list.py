@@ -227,5 +227,8 @@ def main():
     sl1.append(1)
     sl1.deleteNodeValue(1)
     print(sl1)
+
+    sl2=SingleLinkedlist()
+    print(sl2)
 if __name__ == '__main__':
     main()
