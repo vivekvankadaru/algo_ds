@@ -8,6 +8,19 @@ Repeat until the entire array is sorted.
 
 '''
 
+def insertion_sort_1(l):
+    if not l: return []
+    n=len(l)
+    if n==1: return l
+
+    for i in range(1,n):
+        key=l[i]
+        j=i-1
+        while j>=0 and l[j]>key:
+            l[j+1]=l[j]
+            j=j-1
+        l[j+1]=key
+    return l 
 
 def insertion_sort(l):
     #l=[5,3,4,1,2]
@@ -32,7 +45,7 @@ def main():
         l=l.split(',')
         l=list(map(int, l))
     #print(l)
-    sorted_l = insertion_sort(l)
+    sorted_l = insertion_sort_1(l)
     print(sorted_l)
 
 if __name__ == '__main__':
