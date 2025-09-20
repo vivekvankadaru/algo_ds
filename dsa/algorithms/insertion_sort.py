@@ -8,12 +8,32 @@ Repeat until the entire array is sorted.
 
 '''
 
+
+def insertion_sort(l):
+    #l=[5,3,4,1,2]
+    if not l: return []
+    l1=[]
+    l1.append(l[0])
+    len_l=len(l)
+    for i in range(1,len(l)):
+        j=0
+        while j<len(l1) and l[i]>l1[j]:
+        
+            j+=1
+        l1.insert(j, l[i])
+        print(f'{i}th iteration: {l1}')
+    return l1
 def main():
-    l=input('Enter the numbers to sort sep by ,:').split(',')
-    a=1 if l else 2
-    print(a)
-    l=list(map(int, l)) if l else []
-    print(l)
+    l=input('Enter the numbers to sort sep by ,:')
+    while not l:
+        print('Input not entered')
+        l=input('Enter the numbers to sort sep by ,:')
+    if l:
+        l=l.split(',')
+        l=list(map(int, l))
+    #print(l)
+    sorted_l = insertion_sort(l)
+    print(sorted_l)
 
 if __name__ == '__main__':
     main()
