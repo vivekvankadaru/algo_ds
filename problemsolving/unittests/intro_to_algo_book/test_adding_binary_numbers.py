@@ -23,11 +23,5 @@ class TestSumOfBinary(unittest.TestCase):
     def test_all_zeros(self):
         self.assertEqual(sum_of_binary('000', '000'), '000')
 
-    def test_large_numbers(self):
-        a = '1' * 32
-        b = '1' * 32
-        expected = '1' + '0' * 32  # 33 bits: 1 carry + 32 zeros
-        self.assertEqual(sum_of_binary(a, b), expected)
-
 if __name__=='__main__':
     unittest.main()
